@@ -1,0 +1,12 @@
+query accounts(
+  $filter: String
+  $skip: Int
+  $take: Int
+  $relations: [AccountRelation!]
+) {
+  accounts(filter: $filter, skip: $skip, take: $take, relations: $relations) {
+    id
+    name
+    createdAt
+  }
+}

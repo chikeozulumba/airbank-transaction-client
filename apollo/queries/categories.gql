@@ -1,0 +1,12 @@
+query categories(
+  $filter: String
+  $skip: Int
+  $take: Int
+  $relations: [CategoryRelation!]
+) {
+  categories(filter: $filter, skip: $skip, take: $take, relations: $relations) {
+    id
+    name
+    createdAt
+  }
+}

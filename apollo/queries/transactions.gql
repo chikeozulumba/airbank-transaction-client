@@ -1,0 +1,39 @@
+query transactions(
+  $accountId: String
+  $categoryId: String
+  $filter: String
+  $skip: Int
+  $take: Int
+  $date: String
+  $startDate: String
+  $endDate: String
+  $relations: [TransactionRelation!]
+) {
+  transactions(
+    accountId: $accountId
+    categoryId: $categoryId
+    filter: $filter
+    skip: $skip
+    take: $take
+    date: $date
+    startDate: $startDate
+    endDate: $endDate
+    relations: $relations
+  ) {
+    id
+    accountId
+    categoryId
+    reference
+    amount
+    currency
+    date
+
+    category {
+      id
+      name
+      color
+      createdAt
+      updatedAt
+    }
+  }
+}

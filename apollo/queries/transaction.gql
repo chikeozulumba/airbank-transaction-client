@@ -1,0 +1,5 @@
+query transaction($id: ID!, $relations: [TransactionRelation!]) {
+  transactionsCount(id: $id, relations: $relations) {
+    count
+  }
+}
