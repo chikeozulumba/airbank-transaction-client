@@ -3,7 +3,7 @@
     <div class="not-prose relative bg-gray-100/60 overflow-hidden">
       <div class="relative overflow-auto">
         <div class="shadow-sm overflow-hidden">
-          <table class="border-collapse table-auto w-full text-sm">
+          <table class="border-collapse w-full text-sm">
             <thead class="mt-8">
               <tr>
                 <th
@@ -19,7 +19,7 @@
                 <th
                   class="border-b font-medium p-4 pr-8 pb-3 text-gray-500 text-left pt-3 cursor-pointer"
                 >
-                  <button @click="toggledateAscition">
+                  <button @click="toggledateAction">
                     Date {{ !dateAsc ? '&#x2193;' : '&#x2191;' }}
                   </button>
                 </th>
@@ -56,7 +56,9 @@
                           : 'text-[12px]',
                       ]"
                       :style="{
-                        background: transaction.category.color || 'transparent',
+                        background:
+                          hexToRgbA('#' + transaction.category.color, 0.5) ||
+                          'transparent',
                       }"
                     >
                       {{ transaction.category.name }}
@@ -70,12 +72,14 @@
                   {{ dateFormatter(transaction.date) }}
                 </td>
                 <td
-                  class="border-b border-gray-300 p-4 pr-8 text-gray-500 text-right font-bold"
+                  class="border-b border-gray-300 p-4 pr-8 text-gray-500 font-bold text-right"
                 >
-                  <span class="text-[14px]">{{ transaction.amount }}</span>
-                  <span class="text-[14px] opacity-70">{{
-                    transaction.currency
-                  }}</span>
+                  <h2 class="text-[14px] flex items-end justify-end gap-x-2">
+                    {{ transaction.amount }}
+                    <h4 class="text-[14px] opacity-70">
+                      {{ transaction.currency }}
+                    </h4>
+                  </h2>
                 </td>
               </tr>
             </tbody>
@@ -87,6 +91,8 @@
 </template>
 
 <script>
+import { hexToRgbA } from '~/utils/color'
+
 export default {
   name: 'TransactionTable',
   props: {
@@ -100,11 +106,16 @@ export default {
       dateAsc: false,
     }
   },
+  computed: {
+    hexToRgbA() {
+      return hexToRgbA
+    },
+  },
   methods: {
     dateFormatter(date) {
       return new Date(date).toLocaleDateString()
     },
-    toggledateAscition() {
+    toggledateAction() {
       this.dateAsc = !this.dateAsc
       this.$emit('dateSorted', {
         key: 'date',

@@ -30,7 +30,7 @@
       <button
         type="button"
         :disabled="page.isDisabled"
-        :class="{ active: isPageActive(page.name) }"
+        :class="{ active: active(page.name) }"
         class="text-[12px] p-2"
         @click="onClickPage(page.name)"
       >
@@ -141,7 +141,7 @@ export default {
     onClickLastPage() {
       this.$emit('pagechanged', this.totalPages)
     },
-    isPageActive(page) {
+    active(page) {
       return this.currentPage === page
     },
   },

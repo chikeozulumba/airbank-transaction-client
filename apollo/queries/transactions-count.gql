@@ -1,4 +1,4 @@
-query transactionsCount($accountId: String, $categoryId: String) {
+query ($accountId: String, $categoryId: String) {
   transactionsCount(accountId: $accountId, categoryId: $categoryId) {
     count
   }

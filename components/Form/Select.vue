@@ -12,6 +12,7 @@
         v-for="(option, index) in options"
         :key="index"
         :value="option.value"
+        :selected="option.value === value"
       >
         {{ option.key }}
       </option>
@@ -27,6 +28,10 @@ export default {
     name: {
       type: String,
       default: '',
+    },
+    value: {
+      type: String,
+      default: null,
     },
     label: {
       type: String,

@@ -1,5 +1,22 @@
-query transaction($id: ID!, $relations: [TransactionRelation!]) {
-  transactionsCount(id: $id, relations: $relations) {
-    count
+query ($id: ID!, $relations: [TransactionRelation!]) {
+  transaction(id: $id, relations: $relations) {
+    id
+    accountId
+    categoryId
+    reference
+    amount
+    currency
+    date
+
+    account {
+      id
+      name
+    }
+
+    category {
+      id
+      name
+      color
+    }
   }
 }

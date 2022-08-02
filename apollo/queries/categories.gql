@@ -1,4 +1,4 @@
-query categories(
+query (
   $filter: String
   $skip: Int
   $take: Int

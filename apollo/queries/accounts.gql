@@ -1,4 +1,4 @@
-query accounts(
+query (
   $filter: String
   $skip: Int
   $take: Int

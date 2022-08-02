@@ -14,6 +14,7 @@
           label-class-name="text-sm text-gray-500 font-semibold"
           label="Account"
           :options="options"
+          :value="query.accountId"
           @changed="handleFilterChange"
         />
         <div class="flex gap-x-4">
@@ -38,7 +39,7 @@
       <Pagination
         :total="total"
         :per-page="query.take"
-        :total-pages="total"
+        :total-pages="totalPages"
         :current-page="query.currentPage"
         @pagechanged="onPageSelected"
       />
@@ -122,6 +123,8 @@ export default {
         startDate: null,
         endDate: null,
         currentPage: 1,
+        accountId: this.$route.query.accountId,
+        categoryId: this.$route.query.categoryId,
       },
     }
   },
@@ -134,6 +137,9 @@ export default {
     },
     total() {
       return this.transactionsCount?.count || 0
+    },
+    totalPages() {
+      return Math.ceil(this.total / this.query.take - 1)
     },
   },
   methods: {

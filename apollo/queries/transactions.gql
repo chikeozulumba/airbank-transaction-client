@@ -1,4 +1,4 @@
-query transactions(
+query (
   $accountId: String
   $categoryId: String
   $filter: String
